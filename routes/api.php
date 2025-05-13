@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ComentariosController;
+use App\Http\Controllers\InventariosController;
+use App\Http\Controllers\Menus_productosController;
+use App\Http\Controllers\MenusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductosController;
@@ -33,3 +36,21 @@ Route::get('/comentarios', [ComentariosController::class, 'index']);
 Route::post('/comentarios', [ComentariosController::class, 'store']);
 Route::put('/comentarios', [ComentariosController::class, 'update']);
 Route::delete('/comentarios', [ComentariosController::class, 'destroy']);
+
+//Inventario
+Route::get('/inventario', [InventariosController::class, 'index']);
+Route::post('/inventario', [InventariosController::class, 'store']);
+Route::put('/inventario', [InventariosController::class, 'update']);
+Route::delete('/inventario', [InventariosController::class, 'destroy']);
+
+//Menu
+Route::get('/menu', [MenusController::class, 'index']);
+Route::post('/menu', [MenusController::class, 'store']);
+Route::put('/menu/fecha', [MenusController::class, 'update']);
+Route::delete('/menu', [MenusController::class, 'destroy']);
+
+//Menus_productos
+Route::get('/menu_producto', [Menus_productosController::class, 'index']);
+Route::post('/menu_producto', [Menus_productosController::class, 'store']);
+Route::put('/menu_producto', [Menus_productosController::class, 'update']);
+Route::delete('/menu_producto', [Menus_productosController::class, 'destroy']);

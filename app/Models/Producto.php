@@ -23,4 +23,14 @@ class Producto extends Model
     {
         return $this->belongsTo(Categoria::class, 'id_categoria');
     }
+
+    public function inventario()
+    {
+        return $this->hasOne(Inventario::class);
+    }
+
+    public function menu()
+    {
+        return $this->belongsToMany(Menu::class, 'menu_producto', 'id_producto', 'id_menu');
+    }
 }
