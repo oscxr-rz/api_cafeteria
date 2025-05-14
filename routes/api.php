@@ -46,11 +46,5 @@ Route::delete('/inventario', [InventariosController::class, 'destroy']);
 //Menu
 Route::get('/menu', [MenusController::class, 'index']);
 Route::post('/menu', [MenusController::class, 'store']);
-Route::put('/menu/fecha', [MenusController::class, 'update']);
+Route::put('/menu', [MenusController::class, 'update']);
 Route::delete('/menu', [MenusController::class, 'destroy']);
-
-//Menus_productos
-Route::get('/menu_producto', [Menus_productosController::class, 'index']);
-Route::post('/menu_producto', [Menus_productosController::class, 'store']);
-Route::put('/menu_producto', [Menus_productosController::class, 'update']);
-Route::delete('/menu_producto', [Menus_productosController::class, 'destroy']);

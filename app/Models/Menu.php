@@ -15,7 +15,7 @@ class Menu extends Model
     ];
     public $timestamps = false;
 
-    public function producto()
+    public function productos()
     {
         return $this->belongsToMany(Producto::class, 'menu_producto', 'id_menu', 'id_producto');
     }
