@@ -9,6 +9,7 @@ use App\Http\Controllers\MenusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\TarjetasController;
 use App\Http\Controllers\UsuariosController;
 
 //Productos
@@ -55,3 +56,7 @@ Route::post('/carrito', [CarritosController::class, 'index']);
 Route::post('/carrito/add', [CarritosController::class, 'store']);
 Route::put('/carrito', [CarritosController::class, 'update']);
 Route::delete('/carrito', [CarritosController::class, 'destroy']);
+
+//Tarjeta 
+Route::post('/tarjeta', [TarjetasController::class, 'index']);
+Route::put('/tarjeta', [TarjetasController::class, 'update']);
