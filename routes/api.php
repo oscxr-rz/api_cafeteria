@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarritosController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ComentariosController;
 use App\Http\Controllers\InventariosController;
@@ -48,3 +49,9 @@ Route::get('/menu', [MenusController::class, 'index']);
 Route::post('/menu', [MenusController::class, 'store']);
 Route::put('/menu', [MenusController::class, 'update']);
 Route::delete('/menu', [MenusController::class, 'destroy']);
+
+//Carrito
+Route::post('/carrito', [CarritosController::class, 'index']);
+Route::post('/carrito/add', [CarritosController::class, 'store']);
+Route::put('/carrito', [CarritosController::class, 'update']);
+Route::delete('/carrito', [CarritosController::class, 'destroy']);
