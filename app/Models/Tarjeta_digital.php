@@ -10,6 +10,7 @@ class Tarjeta_digital extends Model
     protected $table = 'tarjeta_digital';
     protected $primaryKey = 'id_usuario';
     protected $fillable = [
+        'id_usuario',
         'saldo'
     ];
     public $timestamps = false;

@@ -35,7 +35,7 @@ class TarjetasController extends Controller
         if(!$tarjeta)
         {
             return response()->json([
-                'mensaje' => "Erro, no se pudo actualizar la tarjeta"
+                'mensaje' => "Error, no se pudo actualizar la tarjeta"
             ]);
         }
 

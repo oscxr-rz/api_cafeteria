@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tarjeta_digital;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -26,16 +27,26 @@ class UsuariosController extends Controller
 
         $usuario = Usuario::create($request->all());
 
-        if(!$usuario)
-        {
+        if (!$usuario) {
             return response()->json([
                 'mensaje' => 'Error, no se pudo crear el usuario'
             ]);
         }
 
+        $tarjeta = Tarjeta_digital::create([
+            'id_usuario' => $usuario['id_usuario']
+        ]);
+
+        if (!$tarjeta) {
+            return response()->json([
+                'mensaje' => "Error, no se pudo crear la tarjeta"
+            ]);
+        }
+
         return response()->json([
             'mensaje' => 'Usuario creado correctamente',
-            'usuario' => $usuario
+            'usuario' => $usuario,
+            'tarjeta' => $tarjeta
         ]);
     }
 
@@ -51,8 +62,7 @@ class UsuariosController extends Controller
 
         $usuario = Usuario::find($request['id_usuario']);
 
-        if(!$usuario)
-        {
+        if (!$usuario) {
             return response()->json([
                 'mensaje' => 'Error, no se pudo encontrar el usuario'
             ]);
@@ -60,8 +70,7 @@ class UsuariosController extends Controller
 
         $usuario->update($request->all());
 
-        if(!$usuario)
-        {
+        if (!$usuario) {
             return response()->json([
                 'mensaje' => 'Error, no se pudo actualizar el usuario'
             ]);
@@ -81,22 +90,30 @@ class UsuariosController extends Controller
 
         $usuario = Usuario::find($request['id_usuario']);
 
-        if(!$usuario)
-        {
+        if (!$usuario) {
             return response()->json([
                 'mensaje' => 'Error, no se pudo encontrar el usuario'
             ]);
         }
 
+        $tarjeta = Tarjeta_digital::find($usuario['id_usuario']);
+
+        if (!$tarjeta) {
+            $usuario->delete();
+            return response()->json([
+                'mensaje' => 'El usuario se eliminó correctamente'
+            ]);
+        }
+
+        $tarjeta->delete();
         $usuario->delete();
 
-        if(!$usuario)
-        {
+        if (!$usuario) {
             return response()->json([
                 'mensaje' => 'Error, el usuario no se pudo eliminar'
             ]);
         }
-        
+
         return response()->json([
             'mensaje' => 'El usuario se eliminó correctamente'
         ]);
@@ -141,8 +158,7 @@ class UsuariosController extends Controller
 
         $usuario = Usuario::find($request['id_usuario']);
 
-        if(!$usuario)
-        {
+        if (!$usuario) {
             return response()->json([
                 'mensaje' => 'Error, no se pudo encontrar el usuario'
             ]);
@@ -150,8 +166,7 @@ class UsuariosController extends Controller
 
         $usuario->update($request->all());
 
-        if(!$usuario)
-        {
+        if (!$usuario) {
             return response()->json([
                 'mensaje' => 'Error, no se pudo actualizar el usuario'
             ]);
@@ -172,8 +187,7 @@ class UsuariosController extends Controller
 
         $usuario = Usuario::find($request['id_usuario']);
 
-        if(!$usuario)
-        {
+        if (!$usuario) {
             return response()->json([
                 'mensaje' => 'Error, no se pudo encontrar el usuario'
             ]);
@@ -181,8 +195,7 @@ class UsuariosController extends Controller
 
         $usuario->update($request->all());
 
-        if(!$usuario)
-        {
+        if (!$usuario) {
             return response()->json([
                 'mensaje' => 'Error, no se pudo actualizar el usuario'
             ]);
@@ -193,5 +206,4 @@ class UsuariosController extends Controller
             'usuario' => $usuario
         ]);
     }
-
 }
